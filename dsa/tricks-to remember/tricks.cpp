@@ -47,3 +47,32 @@ class Solution {
 
     // aage aur bhi likhunga 
     // 
+// next smaller elemnt 
+    for(int i=n-1; i>=0; i--){
+
+        while(!st.empty() && st.top().first>=heights[i]){
+            st.pop();
+        }
+        if(st.empty()){
+            nexts.push_back(n);
+        }else{
+            nexts.push_back(st.top().second);
+        }
+        st.push({heights[i], i});
+    }
+    reverse(nexts.begin(), nexts.end());
+
+    // prev smaller elemnt 
+
+    for(int i=0; i<n; i++){
+
+        while(!st.empty() && st.top().first>=heights[i]){
+            st.pop();
+        }
+        if(st.empty()){
+            prevs.push_back(-1);
+        }else{
+            prevs.push_back(st.top().second);
+        }
+        st.push({heights[i], i});
+    }
